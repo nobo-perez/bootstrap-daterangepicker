@@ -85,6 +85,9 @@
         this.leftCalendar = {};
         this.rightCalendar = {};
 
+        // Fonts
+        this.font = 'fa';
+
         //custom options from user
         if (typeof options !== 'object' || options === null)
             options = {};
@@ -92,6 +95,8 @@
         //allow setting options with data attributes
         //data-api options will be overwritten with custom javascript options
         options = $.extend(this.element.data(), options);
+
+        console.log('FONTS', options.font, this.font);
 
         //html template for the picker UI
         if (typeof options.template !== 'string' && !(options.template instanceof $))
@@ -332,7 +337,7 @@
 
                 // If the end of the range is before the minimum or the start of the range is
                 // after the maximum, don't display this range option at all.
-                if ((this.minDate && end.isBefore(this.minDate, this.timepicker ? 'minute' : 'day')) 
+                if ((this.minDate && end.isBefore(this.minDate, this.timepicker ? 'minute' : 'day'))
                   || (maxDate && start.isAfter(maxDate, this.timepicker ? 'minute' : 'day')))
                     continue;
 
@@ -1530,7 +1535,7 @@
             this.container.find('input[name="daterangepicker_start"], input[name="daterangepicker_end"]').removeClass('active');
             $(e.target).addClass('active');
 
-            // Set the state such that if the user goes back to using a mouse, 
+            // Set the state such that if the user goes back to using a mouse,
             // the calendars are aware we're selecting the end of the range, not
             // the start. This allows someone to edit the end of a date range without
             // re-selecting the beginning, by clicking on the end date input then
